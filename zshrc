@@ -1,3 +1,35 @@
+# USER .zshrc file for use with MODULES
+#
+# 2019-03-15 - mcurry
+####
+#
+#if ( ! ($LMOD_FULL_SETTARG_SUPPORT) ) then
+#    export LMOD_FULL_SETTARG_SUPPORT="no"
+#fi
+
+# Source the lmod init for zsh and tell lmod where the modules are
+source /usr/local/lmod/lmod/init/zsh
+export MODULEPATH_ROOT=/usr/local/lmod/lmod/modulefiles
+export MODULEPATH=/usr/local/lmod/lmod/modulefiles/compilers:/usr/local/lmod/lmod/modulefiles/idep:/usr/local/lmod/lmod/modulefiles/cdep/gnu
+
+# Source the $USER .usermodrc file, if it exists
+#if [[ -a ~/.usermodrc ]] then
+#    source ~/.usermodrc
+#fi
+
+#############################################
+### User Specific Functions, alias etc below
+
+
+# Alias
+alias ls='ls -G'
+alias l='ls -G'
+alias lv='ls -Gv'
+alias ll='ls -lG'
+alias la='ls -laG'
+alias vim='vim -p'    # Open list of files in tabs
+alias ssh='ssh -X'    # X11 Forwarding
+
 # Prompt set up
 autoload -U compinit promptinit
 compinit
@@ -33,6 +65,9 @@ bindkey -M vicmd "?" history-incremental-search-forward
 bindkey -M vicmd "//" history-beginning-search-backward
 bindkey -M vicmd "??" history-beginning-search-forward
 
+# Additions to Path
+export PATH=/Users/mcurry/Projects/mpas/convert_mpas:${PATH}
+
 # Functions
 
 # Extract most compressed files
@@ -62,4 +97,3 @@ extract () {
 reload() {
     source ~/.zshrc
 }
-
