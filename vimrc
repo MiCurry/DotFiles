@@ -25,7 +25,7 @@ set backspace=eol,start,indent  " Allow backspace in insertmode
 "Ruler
 set ruler " Show the ruler
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)  " a ruler on steroids
-set showcmd
+set showcmd " Show the current command being typed
 
 "Undos and history to be persistant
 set undolevels=1000

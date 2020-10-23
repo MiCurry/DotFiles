@@ -1,35 +1,3 @@
-# USER .zshrc file for use with MODULES
-#
-# 2019-03-15 - mcurry
-####
-#
-#if ( ! ($LMOD_FULL_SETTARG_SUPPORT) ) then
-#    export LMOD_FULL_SETTARG_SUPPORT="no"
-#fi
-
-# Source the lmod init for zsh and tell lmod where the modules are
-source /usr/local/lmod/lmod/init/zsh
-export MODULEPATH_ROOT=/usr/local/lmod/lmod/modulefiles
-export MODULEPATH=/usr/local/lmod/lmod/modulefiles/compilers:/usr/local/lmod/lmod/modulefiles/idep:/usr/local/lmod/lmod/modulefiles/cdep/gnu
-
-# Source the $USER .usermodrc file, if it exists
-#if [[ -a ~/.usermodrc ]] then
-#    source ~/.usermodrc
-#fi
-
-#############################################
-### User Specific Functions, alias etc below
-
-
-# Alias
-alias ls='ls -G'
-alias l='ls -G'
-alias lv='ls -Gv'
-alias ll='ls -lG'
-alias la='ls -laG'
-alias vim='vim -p'    # Open list of files in tabs
-alias ssh='ssh -X'    # X11 Forwarding
-
 # Prompt set up
 autoload -U compinit promptinit
 compinit
@@ -38,14 +6,10 @@ prompt suse
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-unsetopt beep
+HISTSIZE=2000
+SAVEHIST=2000
+unsetopt beep # Turn off visualbell 
 bindkey -v
-
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/devotice/.zshrc'
 
 # Auto Completion
 autoload -Uz compinit
@@ -65,10 +29,22 @@ bindkey -M vicmd "?" history-incremental-search-forward
 bindkey -M vicmd "//" history-beginning-search-backward
 bindkey -M vicmd "??" history-beginning-search-forward
 
-# Additions to Path
-export PATH=/Users/mcurry/Projects/mpas/convert_mpas:${PATH}
+# Alias
+alias ls='ls --color=auto'
+alias l='ls --color=auto'
+alias lv='ls --color=auto -v'
+alias ll='ls --color=auto -l'
+alias la='ls --color=auto -la'
+alias vim='vim -p'    # Open list of files in tabs
+alias ssh='ssh -X'    # X11 Forwarding
+# gpmetis is a graph partitioning tool used for MPAS. 
+# I got tired of looking up the arguments
+alias gpmetis='gpmetis -minconn -contig -niter=200'
 
-# Functions
+# Additions to Path
+
+#############################################
+### Functions
 
 # Extract most compressed files
 extract () {
@@ -91,7 +67,6 @@ extract () {
         echo "'$1' is not a valid file"
     fi
 }
-
 
 # reload function
 reload() {
