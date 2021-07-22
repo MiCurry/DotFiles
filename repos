@@ -1,0 +1,10 @@
+# Comments start with a '#', no in-line comments :'(
+= mpas
+mpas-dev git@github.com:MPAS-Dev/MPAS-Model.git
+curry git@github.com:MiCurry/MPAS-Model.git
+duda git@github.com:mgduda/MPAS-Model.git
+
+= cam
+escomp git@github.com:ESCOMP/CAM.git
+curry git@github.com:MiCurry/CAM.git
+duda git@github.com:mgduda/CAM.git
