@@ -1,33 +1,16 @@
-# Prompt set up
-autoload -U compinit promptinit
-compinit
-promptinit
-prompt suse
+# .bashrc
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=2000
-SAVEHIST=2000
-unsetopt beep # Turn off visualbell 
-bindkey -v
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
 
-# Auto Completion
-autoload -Uz compinit
-compinit -i
-zstyle ':completion:*' menu select
-setopt completealiases
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+export SYSTEMD_PAGER=
 
-# More extensive tab completion
-setopt completeinword
-
-# Key bindings
-# Incremental search
-bindkey -M vicmd "/" history-incremental-search-backward
-bindkey -M vicmd "?" history-incremental-search-forward
-
-# Search based on whats already typed
-bindkey -M vicmd "//" history-beginning-search-backward
-bindkey -M vicmd "??" history-beginning-search-forward
+# Better Autocompletion
+bind 'TAB:menu-complete'
+bind 'set show-all-if-ambiguous on'
 
 # Alias
 alias ls='ls --color=auto'
@@ -42,20 +25,14 @@ alias ssh='ssh -X'    # X11 Forwarding
 # I got tired of looking up the arguments
 alias gpmetis='gpmetis -minconn -contig -niter=200'
 
-export ~/$USER
-
 # Additions to Path
+export ~/$USER
 export PATH=$USER/mpas/convert_mpas:${PATH}
 export PATH=$USER/MPAS-Limited-Area:${PATH}
 export PATH=$USER/.local/bin:${PATH}
 export PATH=$USER/metis-5.1.0/build/Linux-x86_64/programs:${PATH}
 export PATH=$USER/wps/bin:${PATH}
 export PATH=$USER/bin:${PATH}
-
-# Additions to Path
-
-#############################################
-### Functions
 
 # Extract most compressed files
 extract () {
@@ -79,7 +56,11 @@ extract () {
     fi
 }
 
+
 # reload function
 reload() {
-    source ~/.zshrc
+    source ~/.bashr
 }
+
+export MANPATH=/usr/share/man
+source /etc/profile.d/*.sh
