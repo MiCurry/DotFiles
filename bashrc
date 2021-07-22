@@ -26,13 +26,12 @@ alias ssh='ssh -X'    # X11 Forwarding
 alias gpmetis='gpmetis -minconn -contig -niter=200'
 
 # Additions to Path
-export ~/$USER
-export PATH=$USER/mpas/convert_mpas:${PATH}
-export PATH=$USER/MPAS-Limited-Area:${PATH}
-export PATH=$USER/.local/bin:${PATH}
-export PATH=$USER/metis-5.1.0/build/Linux-x86_64/programs:${PATH}
-export PATH=$USER/wps/bin:${PATH}
-export PATH=$USER/bin:${PATH}
+export PATH=$HOME/mpas/convert_mpas:${PATH}
+export PATH=$HOME/MPAS-Limited-Area:${PATH}
+export PATH=$HOME/.local/bin:${PATH}
+export PATH=$HOME/metis-5.1.0/build/Linux-x86_64/programs:${PATH}
+export PATH=$HOME/wps/bin:${PATH}
+export PATH=$HOME/bin:${PATH}
 
 # Extract most compressed files
 extract () {
