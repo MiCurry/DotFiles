@@ -40,6 +40,7 @@ set autochdir
 " Syntax, textwidth, and tab stuff
 set textwidth=79
 
+" Depending on the file extension, set settings accordingly
 autocmd BufRead,BufNewFile *.sh set textwidth=200
 
 autocmd BufRead,BufNewFile *.txt setlocal spell
@@ -51,21 +52,22 @@ autocmd BufRead,BufNewFile *.md set textwidth=79
 autocmd BufRead,BufNewFile Makefile set textwidth=300
 autocmd BufRead,BufNewFile Makefile set noexpandtab
 
+" Python
 autocmd BufRead,BufNewFile *.py set textwidth=99
 autocmd BufRead,BufNewFile *.py set expandtab
 
+" Fortran
 autocmd BufRead,BufNewFile *.F set textwidth=132
 autocmd BufRead,BufNewFile *.F set tabstop=4
 autocmd BufRead,BufNewFile *.F set shiftwidth=4
-
 autocmd BufRead,BufNewFile *.f90 set textwidth=132
 autocmd BufRead,BufNewFile *.f90 set tabstop=4
 autocmd BufRead,BufNewFile *.f90 set shiftwidth=4
-
 autocmd BufRead,BufNewFile *.F90 set textwidth=132
 autocmd BufRead,BufNewFile *.F90 set tabstop=4
 autocmd BufRead,BufNewFile *.F90 set shiftwidth=4
 
+" C
 autocmd BufRead,BufNewFile *.c set noexpandtab
 autocmd BufRead,BufNewFile *.c set tabstop=8
 autocmd BufRead,BufNewFile *.c set shiftwidth=8
@@ -73,12 +75,25 @@ autocmd BufRead,BufNewFile *.h set noexpandtab
 autocmd BufRead,BufNewFile *.h set tabstop=8
 autocmd BufRead,BufNewFile *.h set shiftwidth=8
 
+" Git
 autocmd BufRead,BufNewFile COMMIT_EDITMSG setlocal spell
 autocmd BufRead,BufNewFile COMMIT_EDITMSG set textwidth=79
 
 autocmd BufRead,BufNewFile CMake* setlocal nospell
 autocmd BufRead,BufNewFile CMake* set textwidth=300
 
+" HTML
+autocmd BufRead,BufNewFile *.html set textwidth=1000
+
 " Coloumn Highlighting - Highlight the last coloumn (e.g. the 80th columns)
 highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
 set cc=+1
+
+function! StreamFileToHTML() range
+    " MPAS Stream files can't be displayed on HTML, so call this function to
+    " replace their '<' and '>', just be sure you make a visual selection
+    set nomagic
+    execute "'<,'>s/</&lt;/g"
+    execute "'<,'>s/>/&gt;/g"
+    set magic
+endfunction
