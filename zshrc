@@ -38,19 +38,17 @@ alias la='ls --color=auto -la'
 alias vim='vim -p'    # Open list of files in tabs
 alias ssh='ssh -X'    # X11 Forwarding
 
-# gpmetis is a graph partitioning tool used for MPAS. 
-# I got tired of looking up the arguments
-alias gpmetis='gpmetis -minconn -contig -niter=200'
 
-export ~/$USER
 
 # Additions to Path
-export PATH=$USER/mpas/convert_mpas:${PATH}
-export PATH=$USER/MPAS-Limited-Area:${PATH}
-export PATH=$USER/.local/bin:${PATH}
-export PATH=$USER/metis-5.1.0/build/Linux-x86_64/programs:${PATH}
-export PATH=$USER/wps/bin:${PATH}
-export PATH=$USER/bin:${PATH}
+export PATH=/home/$USER/MPAS-Limited-Area:${PATH}
+export PATH=/home/$USER/.local/bin:${PATH}
+export PATH=/home/$USER/wps/bin:${PATH}
+export PATH=/home/$USER/bin:${PATH}
+export PATH=/home/$USER/mpas-libs/bin:${PATH}
+export PATH=/home/$USER/convert_mpas:${PATH}
+export PATH=$PATH:/usr/local/go/bin
+ 
 
 # Additions to Path
 
@@ -82,4 +80,10 @@ extract () {
 # reload function
 reload() {
     source ~/.zshrc
+}
+
+# MiDrive Sync
+misync() {
+    rsync -avz ~/MiDrive miles@server:~/
+    rsync -avz miles@server:~/MiDrive ~/
 }
