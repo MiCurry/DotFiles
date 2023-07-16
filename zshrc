@@ -4,30 +4,19 @@ compinit
 promptinit
 prompt suse
 
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=2000
-SAVEHIST=2000
-unsetopt beep # Turn off visualbell 
+HISTSIZE=10000
+SAVEHIST=300000
+unsetopt beep
 bindkey -v
 
 # Auto Completion
+zstyle :compinstall filename '/home/miles/.zshrc'
 autoload -Uz compinit
 compinit -i
 zstyle ':completion:*' menu select
 setopt completealiases
-
-# More extensive tab completion
 setopt completeinword
-
-# Key bindings
-# Incremental search
-bindkey -M vicmd "/" history-incremental-search-backward
-bindkey -M vicmd "?" history-incremental-search-forward
-
-# Search based on whats already typed
-bindkey -M vicmd "//" history-beginning-search-backward
-bindkey -M vicmd "??" history-beginning-search-forward
 
 # Alias
 alias ls='ls --color=auto'
@@ -38,22 +27,8 @@ alias la='ls --color=auto -la'
 alias vim='vim -p'    # Open list of files in tabs
 alias ssh='ssh -X'    # X11 Forwarding
 
-
-
-# Additions to Path
-export PATH=/home/$USER/MPAS-Limited-Area:${PATH}
-export PATH=/home/$USER/.local/bin:${PATH}
-export PATH=/home/$USER/wps/bin:${PATH}
-export PATH=/home/$USER/bin:${PATH}
-export PATH=/home/$USER/mpas-libs/bin:${PATH}
-export PATH=/home/$USER/convert_mpas:${PATH}
-export PATH=$PATH:/usr/local/go/bin
- 
-
-# Additions to Path
-
-#############################################
-### Functions
+export PATH=$USER/.local/bin:${PATH}
+export PATH=$USER/bin:${PATH}
 
 # Extract most compressed files
 extract () {

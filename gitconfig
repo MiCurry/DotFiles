@@ -1,9 +1,15 @@
+# This is Git's per-user configuration file.
 [user]
-	name = Miles A Curry
-	email = currymiles@gmail.com
-[color]
-	ui = true
+	name = Miles Curry
+	email = 2590700+MiCurry@users.noreply.github.com
 [core]
-	editor = vim
+	excludesfile = /Users/miles/.gitignore_global
+[init]
+	defaultBranch = main
+[color]
+    ui = true
+[core]
+    editor = vim
 [alias]
     ll = log --oneline
+
