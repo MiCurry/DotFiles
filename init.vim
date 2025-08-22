@@ -1,4 +1,61 @@
+call plug#begin()
+
+ Plug 'neovim/nvim-lspconfig'
+ Plug 'nvim-treesitter/nvim-treesitter'
+ Plug 'nvim-lua/plenary.nvim'
+ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+ Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+ Plug 'vimwiki/vimwiki'
+
+call plug#end()
+
+lua require 'lspconfig'.fortls.setup{}
+
+" Treesitter config
+lua << EOF
+require 'nvim-treesitter.configs'.setup {
+    ensure_installed = {"fortran"},
+    auto_install = true,
+    highlight = {
+	    enable = true,
+    },
+    disable = function(lang, buf)
+        local file_extension = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":e")
+        if file_extension == "md" and lang == "markdown" then
+            return true -- Disable highlighting for Markdown
+        end
+        return false
+    end,
+}
+EOF
+
+" Correct some issues with Fortran snippits in 
+" vimwiki markdown
+let g:markdown_fenced_languages = [
+      \ 'fortran',
+      \]
+
+
+" Colorscheme
+colorscheme desert
+
+
+" Telescope commands
+nnoremap <leader>ff <cmd> Telescope find_files<cr>
+nnoremap <leader>fg <cmd> Telescope live_grep<cr>
+nnoremap <leader>fb <cmd> Telescope buffers<cr>
+nnoremap <leader>fh <cmd> Telescope help_tags<cr>
+
+" Leader commands to make
+nnoremap <leader>mm <cmd>:make 	
+nnoremap <leader>mc <cmd>:make clean 
+nnoremap <leader>ma <cmd>:make clean; make
+
+" vim wiki
+let g:vimwiki_list = [{'path' : '~/vimwiki/', 'syntax' : 'markdown', 'ext' : 'md' }]
+
 " indentation and wrapping
+:set foldcolumn=3
 set autoindent		" Auto indentation stuff
 set smartindent	    " Indent based on file type.
 set tabstop=4
@@ -35,10 +92,10 @@ set mouse=a
 
 " Change vim's current working directory to the currently 
 " open file
-set autochdir 
+" set autochdir 
 
 " Syntax, textwidth, and tab stuff
-set textwidth=79
+set textwidth=120
 
 " Depending on the file extension, set settings accordingly
 autocmd BufRead,BufNewFile *.sh set textwidth=200
@@ -97,3 +154,4 @@ function! StreamFileToHTML() range
     execute "'<,'>s/>/&gt;/g"
     set magic
 endfunction
+

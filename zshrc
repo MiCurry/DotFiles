@@ -56,9 +56,3 @@ extract () {
 reload() {
     source ~/.zshrc
 }
-
-# MiDrive Sync
-misync() {
-    rsync -avz ~/MiDrive miles@server:~/
-    rsync -avz miles@server:~/MiDrive ~/
-}
